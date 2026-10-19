@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Creative Showcase</title>
+    <link rel="stylesheet" href="showcase.css">
+</head>
+
+<body>
+
+<section class="showcase" id="showcase">
+
+    <div class="showcase-header">
+        <p class="eyebrow">MY CREATIVE WORK</p>
+        <h2>Photo & Video Editing</h2>
+        <p class="showcase-description">
+            A collection of visual content, creative edits, and digital media.
+        </p>
+    </div>
+
+    <div class="slider">
+
+        <div class="slides">
+
+            <!-- Slide 1 -->
+            <div class="slide active">
+                <img src="images/photo1.jpg" alt="Creative photo edit">
+                <div class="slide-caption">
+                    <span>01 / PHOTOGRAPHY</span>
+                    <h3>Creative Photo Editing</h3>
+                    <p>Enhancing images through visual adjustments and composition.</p>
+                </div>
+            </div>
+
+            <!-- Slide 2 -->
+            <div class="slide">
+                <img src="images/photo2.jpg" alt="Digital content design">
+                <div class="slide-caption">
+                    <span>02 / DIGITAL CONTENT</span>
+                    <h3>Visual Content Creation</h3>
+                    <p>Creating visuals for digital communication and social media.</p>
+                </div>
+            </div>
+
+            <!-- Slide 3 -->
+            <div class="slide">
+                <img src="images/photo3.jpg" alt="Social media creative work">
+                <div class="slide-caption">
+                    <span>03 / SOCIAL MEDIA</span>
+                    <h3>Social Media Creatives</h3>
+                    <p>Visual materials designed to communicate messages effectively.</p>
+                </div>
+            </div>
+
+            <!-- Slide 4 -->
+            <div class="slide">
+                <img src="images/photo4.jpg" alt="Video editing project">
+                <div class="slide-caption">
+                    <span>04 / VIDEO EDITING</span>
+                    <h3>Video Production</h3>
+                    <p>Editing footage into engaging visual stories.</p>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Previous button -->
+        <button class="slider-arrow prev" aria-label="Previous slide">
+            &#10094;
+        </button>
+
+        <!-- Next button -->
+        <button class="slider-arrow next" aria-label="Next slide">
+            &#10095;
+        </button>
+
+        <!-- Slide counter -->
+        <div class="slide-counter">
+            <span id="currentSlide">01</span>
+            <span class="counter-divider"></span>
+            <span id="totalSlides">04</span>
+        </div>
+
+    </div>
+
+    <!-- Navigation dots -->
+    <div class="slider-dots" aria-label="Choose a slide"></div>
+
+</section>
+
+<script>
+    const slider = document.querySelector(".slider");
+    const slides = document.querySelectorAll(".slide");
+    const prevButton = document.querySelector(".prev");
+    const nextButton = document.querySelector(".next");
+    const dotsContainer = document.querySelector(".slider-dots");
+    const currentSlideText = document.getElementById("currentSlide");
+    const totalSlidesText = document.getElementById("totalSlides");
+
+    let currentIndex = 0;
+    let touchStartX = 0;
+    let touchEndX = 0;
+
+    totalSlidesText.textContent = String(slides.length).padStart(2, "0");
+
+    // Create navigation dots
+    slides.forEach((slide, index) => {
+        const dot = document.createElement("button");
+
+        dot.classList.add("dot");
+        dot.setAttribute("aria-label", `Go to slide ${index + 1}`);
+
+        if (index === 0) {
+            dot.classList.add("active");
+        }
+
+        dot.addEventListener("click", () => {
+            showSlide(index);
+        });
+
+        dotsContainer.appendChild(dot);
+    });
+
+    const dots = document.querySelectorAll(".dot");
+
+    function showSlide(index) {
+        // Wrap around when reaching either end
+        if (index < 0) {
+            currentIndex = slides.length - 1;
+        } else if (index >= slides.length) {
+            currentIndex = 0;
+        } else {
+            currentIndex = index;
+        }
+
+        slides.forEach((slide, i) => {
+            slide.classList.toggle("active", i === currentIndex);
+        });
+
+        dots.forEach((dot, i) => {
+            dot.classList.toggle("active", i === currentIndex);
+        });
+
+        currentSlideText.textContent =
+            String(currentIndex + 1).padStart(2, "0");
+    }
+
+    nextButton.addEventListener("click", () => {
+        showSlide(currentIndex + 1);
+    });
+
+    prevButton.addEventListener("click", () => {
+        showSlide(currentIndex - 1);
+    });
+
+    // Support touch swiping on phones
+    slider.addEventListener("touchstart", (event) => {
+        touchStartX = event.changedTouches[0].screenX;
+    }, { passive: true });
+
+    slider.addEventListener("touchend", (event) => {
+        touchEndX = event.changedTouches[0].screenX;
+
+        const difference = touchEndX - touchStartX;
+
+        if (Math.abs(difference) > 50) {
+            if (difference < 0) {
+                showSlide(currentIndex + 1);
+            } else {
+                showSlide(currentIndex - 1);
+            }
+        }
+    }, { passive: true });
+
+    // Support keyboard navigation
+    document.addEventListener("keydown", (event) => {
+        if (event.key === "ArrowRight") {
+            showSlide(currentIndex + 1);
+        } else if (event.key === "ArrowLeft") {
+            showSlide(currentIndex - 1);
+        }
+    });
+</script>
+
+</body>
+</html>

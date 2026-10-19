@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="description" content="Explore the video editing, social media content, and digital media projects of Shadeus Marwa Matinde.">
+
+    <meta name="author" content="Shadeus Marwa Matinde">
+
+    <title>Video Portfolio | Shadeus Marwa Matinde</title>
+
+    <!-- Main Portfolio Stylesheet -->
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Font Awesome Icons -->
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    >
+
+    <!-- Page-Specific Styling -->
+    <style>
+        .video-portfolio {
+            width: min(1200px, 100%);
+            margin: 0 auto;
+            padding: 100px 6% 70px;
+        }
+
+        .video-back {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 40px;
+            text-decoration: none;
+        }
+
+        .video-heading {
+            text-align: center;
+            margin-bottom: 55px;
+        }
+
+        .video-heading .eyebrow {
+            display: inline-block;
+            margin-bottom: 15px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            font-size: 0.8rem;
+        }
+
+        .video-heading h1 {
+            font-size: clamp(2.2rem, 6vw, 4rem);
+            line-height: 1.2;
+            margin-bottom: 20px;
+        }
+
+        .video-heading h1 span {
+            color: #8af0bd;
+        }
+
+        .video-heading p {
+            max-width: 650px;
+            margin: 0 auto;
+            line-height: 1.8;
+            opacity: 0.8;
+        }
+
+        .video-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 28px;
+        }
+
+        .video-card {
+            min-width: 0;
+            overflow: hidden;
+            border: 1px solid rgba(138, 240, 189, 0.2);
+            border-radius: 16px;
+            background: rgba(255, 255, 255, 0.03);
+            transition:
+                transform 0.3s ease,
+                border-color 0.3s ease;
+        }
+
+        .video-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(138, 240, 189, 0.65);
+        }
+
+        .video-frame {
+            width: 100%;
+            background: #000;
+            overflow: hidden;
+        }
+
+        .video-frame {
+    width: 100%;
+    overflow: hidden;
+    background: #000;
+    line-height: 0;
+}
+
+.video-frame video {
+    display: block;
+    width: 100%;
+    height: 420px;
+    object-fit: contain;
+    background: #000;
+}
+
+        .video-info {
+            padding: 24px;
+        }
+
+        .video-category {
+            display: inline-block;
+            margin-bottom: 12px;
+            color: #8af0bd;
+            font-size: 0.75rem;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+        }
+
+        .video-info h2 {
+            font-size: 1.25rem;
+            margin: 0 0 12px;
+        }
+
+        .video-info p {
+            font-size: 0.95rem;
+            line-height: 1.8;
+            opacity: 0.8;
+            margin: 0;
+        }
+
+        .video-footer {
+            text-align: center;
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 1px solid rgba(138, 240, 189, 0.15);
+        }
+
+        .video-footer p {
+            line-height: 1.8;
+            opacity: 0.8;
+            margin-bottom: 20px;
+        }
+
+        .video-contact {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            text-decoration: none;
+        }
+
+        @media (max-width: 700px) {
+            .video-portfolio {
+                padding: 70px 5% 45px;
+            }
+
+            .video-grid {
+                grid-template-columns: 1fr;
+                gap: 24px;
+            }
+
+            .video-heading {
+                margin-bottom: 35px;
+            }
+
+            .video-info {
+                padding: 20px;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .video-card {
+                transition: none;
+            }
+
+            .video-card:hover {
+                transform: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <main class="video-portfolio">
+
+        <!-- Back to Main Portfolio -->
+        <a href="index.html" class="video-back">
+            <i class="fa-solid fa-arrow-left" aria-hidden="true"></i>
+            <span>Back to Main Portfolio</span>
+        </a>
+
+        <!-- Page Heading -->
+        <header class="video-heading">
+
+            <span class="eyebrow">
+                Creative Work
+            </span>
+
+            <h1>
+                My <span>Video Portfolio</span>
+            </h1>
+
+            <p>
+                Welcome to my video portfolio. Explore a selection of my
+                creative work in video editing, social media content,
+                promotional media, and digital communication.
+            </p>
+
+        </header>
+
+        <!-- Video Projects -->
+        <section class="video-grid" aria-label="Video projects">
+
+            <!-- VIDEO 1 -->
+            <article class="video-card">
+
+                <div class="video-frame">
+                    <video
+                        controls
+                        playsinline
+                        preload="metadata"
+                        aria-label="Video editing project one"
+                    >
+                        <source
+                            src="videos/Vid1.mp4"
+                            type="video/mp4"
+                        >
+
+                        Your browser does not support HTML video.
+                    </video>
+                </div>
+
+                <div class="video-info">
+
+                    <span class="video-category">
+                        Video Project 01
+                    </span>
+
+                    <h2>Video Editing</h2>
+
+                    <p>
+                         </p>
+
+                </div>
+
+            </article>
+
+            <!-- VIDEO 2 -->
+            <article class="video-card">
+
+                <div class="video-frame">
+                    <video
+                        controls
+                        playsinline
+                        preload="metadata"
+                        aria-label="Social media content video two"
+                    >
+                        <source
+                            src="videos/Vid2.mp4"
+                            type="video/mp4"
+                        >
+
+                        Your browser does not support HTML video.
+                    </video>
+                </div>
+
+                <div class="video-info">
+
+                    <span class="video-category">
+                        Video Project 02
+                    </span>
+
+                    <h2>Social Media Content</h2>
+
+                    <p>
+                        
+                    </p>
+
+                </div>
+
+            </article>
+
+            <!-- VIDEO 3 -->
+            <article class="video-card">
+
+                <div class="video-frame">
+                    <video
+                        controls
+                        playsinline
+                        preload="metadata"
+                        aria-label="Promotional media video three"
+                    >
+                        <source
+                            src="videos/Vid3.mp4"
+                            type="video/mp4"
+                        >
+
+                        Your browser does not support HTML video.
+                    </video>
+                </div>
+
+                <div class="video-info">
+
+                    <span class="video-category">
+                        Video Project 03
+                    </span>
+
+                    <h2>Digital Media Production</h2>
+
+                    <p>
+                        
+                    </p>
+
+                </div>
+
+            </article>
+
+<article class="video-card">
+
+                <div class="video-frame">
+                    <video
+                        controls
+                        playsinline
+                        preload="metadata"
+                        aria-label="Promotional media video three"
+                    >
+                        <source
+                            src="videos/Vid4.mp4"
+                            type="video/mp4"
+                        >
+
+                        Your browser does not support HTML video.
+                    </video>
+                </div>
+
+                <div class="video-info">
+
+                    <span class="video-category">
+                        Video Project 04
+                    </span>
+
+                    <h2>Digital Media Production</h2>
+
+                    <p>
+                        
+                    </p>
+
+                </div>
+
+            </article>
+
+
+        </section>
+
+        <!-- Footer -->
+        <footer class="video-footer">
+
+            <p>
+                Interested in my creative work or professional skills?
+                Explore my main portfolio to learn more about me.
+            </p>
+
+            <a href="index.html" class="video-contact">
+                <i class="fa-solid fa-user" aria-hidden="true"></i>
+                <span>Explore My Main Portfolio</span>
+            </a>
+
+        </footer>
+
+    </main>
+
+</body>
+</html>
