@@ -1,0 +1,1616 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#080b12">
+  <meta name="description" content="Portfolio of Shadeus Marwa Matinde, software developer and social media specialist combining technology, digital communication, creative content, and practical solutions.">
+
+  <title>Shadeus Marwa Matinde | Software Developer &amp; Social Media Specialist</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+  <!-- Showcase styles: existing style.css remains unchanged -->
+  <style>
+    /* CREATIVE SHOWCASE */
+    .creative-showcase {
+      margin-top: 65px;
+    }
+
+    .creative-showcase-heading {
+      margin-bottom: 28px;
+    }
+
+    .creative-showcase-heading h3 {
+      font-size: clamp(24px, 4vw, 34px);
+      margin: 10px 0;
+    }
+
+    .creative-showcase-heading p {
+      max-width: 600px;
+      line-height: 1.8;
+      opacity: 0.75;
+    }
+
+    .creative-slider {
+      position: relative;
+      width: 100%;
+      overflow: hidden;
+      border-radius: 16px;
+      background: #10151c;
+      border: 1px solid rgba(138, 240, 189, 0.15);
+      isolation: isolate;
+      touch-action: pan-y;
+    }
+
+    .creative-slides {
+      position: relative;
+      width: 100%;
+      min-height: 300px;
+      aspect-ratio: 16 / 10;
+      max-height: 650px;
+      background: #10151c;
+    }
+
+    .creative-slide {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      opacity: 0;
+      visibility: hidden;
+      transform: translateX(35px) scale(0.985);
+      transition:
+        opacity 0.45s ease,
+        transform 0.55s ease,
+        visibility 0.45s;
+      pointer-events: none;
+    }
+
+    .creative-slide.is-active {
+      z-index: 1;
+      opacity: 1;
+      visibility: visible;
+      transform: translateX(0) scale(1);
+      pointer-events: auto;
+    }
+
+    .creative-slide img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      inset: 0;
+      object-fit: cover;
+      object-position: center;
+    }
+
+    .creative-slide::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      background: linear-gradient(
+        to top,
+        rgba(4, 8, 13, 0.94) 0%,
+        rgba(4, 8, 13, 0.5) 36%,
+        rgba(4, 8, 13, 0.04) 75%
+      );
+      pointer-events: none;
+    }
+
+    .creative-slide-caption {
+      position: absolute;
+      z-index: 2;
+      left: clamp(20px, 5vw, 48px);
+      right: clamp(20px, 5vw, 48px);
+      bottom: clamp(24px, 5vw, 45px);
+      max-width: 650px;
+      transform: translateY(15px);
+      opacity: 0;
+      transition:
+        opacity 0.4s ease 0.12s,
+        transform 0.4s ease 0.12s;
+    }
+
+    .creative-slide.is-active .creative-slide-caption {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .creative-slide-caption .slide-category {
+      display: inline-block;
+      margin-bottom: 10px;
+      color: #8af0bd;
+      font-family: "DM Mono", monospace;
+      font-size: 11px;
+      letter-spacing: 1.8px;
+    }
+
+    .creative-slide-caption h4 {
+      margin: 0 0 10px;
+      color: #fff;
+      font-size: clamp(22px, 4vw, 36px);
+      line-height: 1.2;
+    }
+
+    .creative-slide-caption p {
+      max-width: 520px;
+      margin: 0;
+      color: rgba(255, 255, 255, 0.83);
+      font-size: 14px;
+      line-height: 1.8;
+    }
+
+    .creative-arrow {
+      position: absolute;
+      z-index: 5;
+      top: 50%;
+      width: 46px;
+      height: 46px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid rgba(255, 255, 255, 0.28);
+      border-radius: 50%;
+      background: rgba(8, 11, 18, 0.7);
+      color: #fff;
+      font-size: 17px;
+      cursor: pointer;
+      transform: translateY(-50%);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      transition:
+        background 0.25s ease,
+        color 0.25s ease,
+        border-color 0.25s ease;
+    }
+
+    .creative-arrow:hover {
+      background: #8af0bd;
+      color: #080b12;
+      border-color: #8af0bd;
+    }
+
+    .creative-arrow:focus-visible,
+    .creative-dot:focus-visible {
+      outline: 2px solid #8af0bd;
+      outline-offset: 4px;
+    }
+
+    .creative-arrow-prev {
+      left: 18px;
+    }
+
+    .creative-arrow-next {
+      right: 18px;
+    }
+
+    .creative-counter {
+      position: absolute;
+      z-index: 5;
+      top: 20px;
+      right: 20px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 13px;
+      border-radius: 30px;
+      background: rgba(8, 11, 18, 0.72);
+      color: #fff;
+      font-family: "DM Mono", monospace;
+      font-size: 12px;
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+    }
+
+    .creative-counter-current {
+      color: #8af0bd;
+    }
+
+    .creative-counter-divider {
+      width: 18px;
+      height: 1px;
+      background: rgba(255, 255, 255, 0.45);
+    }
+
+    .creative-dots {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 9px;
+      margin-top: 22px;
+    }
+
+    .creative-dot {
+      width: 8px;
+      height: 8px;
+      padding: 0;
+      border: none;
+      border-radius: 20px;
+      background: #52605b;
+      cursor: pointer;
+      transition:
+        width 0.3s ease,
+        background 0.3s ease;
+    }
+
+    .creative-dot.is-active {
+      width: 27px;
+      background: #8af0bd;
+    }
+
+    .creative-showcase-note {
+      margin-top: 18px;
+      font-size: 12px;
+      line-height: 1.8;
+      opacity: 0.65;
+    }
+
+    @media (max-width: 650px) {
+      .creative-showcase {
+        margin-top: 45px;
+      }
+
+      .creative-slides {
+        min-height: 360px;
+        aspect-ratio: 4 / 5;
+      }
+
+      .creative-arrow {
+        width: 39px;
+        height: 39px;
+        font-size: 14px;
+      }
+
+      .creative-arrow-prev {
+        left: 12px;
+      }
+
+      .creative-arrow-next {
+        right: 12px;
+      }
+
+      .creative-counter {
+        top: 13px;
+        right: 13px;
+      }
+
+      .creative-slide-caption p {
+        font-size: 13px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .creative-slide,
+      .creative-slide-caption,
+      .creative-arrow,
+      .creative-dot {
+        transition: none;
+      }
+      }
+      
+     /* SEPARATE TOP PHOTO HERO */
+.top-photo-hero {
+  position: relative;
+  width: 100%;
+  height: 75vh;
+  min-height: 420px;
+  max-height: 800px;
+  overflow: hidden;
+  background: #080b12;
+  isolation: isolate;
+}
+
+.top-photo-slide {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  opacity: 0;
+  transform: scale(1.04);
+  transition: opacity 1s ease, transform 5s ease;
+}
+
+.top-photo-slide.active {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.top-photo-slide {
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+}
+
+.top-photo-slide.active {
+    opacity: 1;
+}
+
+
+.top-photo-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgba(8, 11, 18, 0.95) 0%,
+    rgba(8, 11, 18, 0.4) 55%,
+    rgba(8, 11, 18, 0.15) 100%
+  );
+}
+
+.top-photo-content {
+  position: absolute;
+  z-index: 2;
+  left: clamp(24px, 8vw, 100px);
+  right: 24px;
+  bottom: 75px;
+  max-width: 750px;
+}
+
+.top-photo-content h1 {
+  margin: 15px 0;
+  color: #fff;
+  font-size: clamp(32px, 6vw, 68px);
+  line-height: 1.1;
+}
+
+.top-photo-content p:last-child {
+  color: rgba(255, 255, 255, 0.85);
+  line-height: 1.7;
+}
+
+.top-photo-arrow {
+  position: absolute;
+  z-index: 3;
+  top: 50%;
+  width: 44px;
+  height: 44px;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  border-radius: 50%;
+  background: rgba(8, 11, 18, 0.65);
+  color: white;
+  cursor: pointer;
+  transform: translateY(-50%);
+}
+
+.top-photo-arrow:hover {
+  background: #8af0bd;
+  color: #080b12;
+}
+
+.top-photo-prev {
+  left: 20px;
+}
+
+.top-photo-next {
+  right: 20px;
+}
+
+.top-photo-dots {
+  position: absolute;
+  z-index: 3;
+  bottom: 25px;
+  left: 50%;
+  display: flex;
+  gap: 9px;
+  transform: translateX(-50%);
+}
+
+.top-photo-dot {
+  width: 9px;
+  height: 9px;
+  padding: 0;
+  border: none;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.55);
+  cursor: pointer;
+}
+
+.top-photo-dot.active {
+  width: 25px;
+  background: #8af0bd;
+}
+
+@media (max-width: 600px) {
+  .top-photo-hero {
+    height: 65vh;
+    min-height: 380px;
+  }
+
+  .top-photo-content {
+    left: 24px;
+    bottom: 70px;
+  }
+
+  .top-photo-prev {
+    left: 10px;
+  }
+
+  .top-photo-next {
+    right: 10px;
+  }
+}
+
+
+/* Rounded background slideshow corners */
+.top-photo-hero {
+    position: relative;
+    height: 75vh;
+    min-height: 420px;
+    max-height: 800px;
+    overflow: hidden;
+    border-radius: 24px;
+    margin: 20px;
+}
+
+/* Remove slide arrows */
+.top-photo-arrow {
+    display: none !important;
+}
+
+@media (max-width: 768px) {
+    .top-photo-hero {
+        border-radius: 16px;
+        margin: 12px;
+        min-height: 350px;
+    }
+}
+
+/* TOP BACKGROUND SLIDESHOW HERO */
+.top-photo-hero {
+    position: relative;
+    display: block;
+    width: auto;
+    height: 75vh;
+    min-height: 420px;
+    max-height: 800px;
+    margin: 20px;
+    overflow: hidden;
+    border-radius: 24px;
+    isolation: isolate;
+    flex-shrink: 0;
+}
+
+/* Slideshow images */
+.top-photo-slide {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+    z-index: -1;
+}
+
+.top-photo-slide.active {
+    opacity: 1;
+}
+
+/* Dark overlay */
+.top-photo-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        to top,
+        rgba(0, 0, 0, 0.75),
+        rgba(0, 0, 0, 0.1)
+    );
+    z-index: -1;
+}
+
+/* Text */
+.top-photo-content {
+    position: absolute;
+    bottom: 45px;
+    left: 40px;
+    right: 40px;
+    z-index: 2;
+    color: #fff;
+}
+
+/* Hide arrows */
+.top-photo-arrow {
+    display: none !important;
+}
+
+/* Keep the sections vertically stacked */
+main {
+    display: block;
+    width: 100%;
+}
+
+.hero {
+    position: relative;
+    box-sizing: border-box;
+}
+
+@media (max-width: 768px) {
+    .top-photo-hero {
+        height: 55vh;
+        min-height: 350px;
+        margin: 12px;
+        border-radius: 16px;
+    }
+
+    .top-photo-content {
+        bottom: 25px;
+        left: 20px;
+        right: 20px;
+    }
+}
+  </style>
+</head>
+
+<body>
+    
+  <div class="page-glow page-glow-one" aria-hidden="true"></div>
+  <div class="page-glow page-glow-two" aria-hidden="true"></div>
+
+  <header class="site-header">
+    <a class="brand" href="#home" aria-label="Shadeus home">
+      <span class="brand-mark">S<span></span></span>
+      <span class="brand-name">SHADEUS MATINDE</span>
+    </a>
+
+    <button class="menu-toggle" aria-label="Open navigation" aria-expanded="false">
+      <span></span>
+      <span></span>
+    </button>
+    
+    
+    
+
+    
+
+    <nav class="nav-links" aria-label="Main navigation">
+      <a href="#about">About</a>
+      <a href="#skills">Skills</a>
+      <a href="#social-media">Social Media</a>
+      <a href="#creative-work">Creative Work</a>
+      <a href="#projects">Projects</a>
+      <a href="videos.html">Video Portfolio</a>
+      
+      <a href="#contact" class="nav-cta">Let's talk <span></span></a>
+      
+      
+    </nav>
+    
+    
+        <!-- Video Portfolio -->
+        
+
+    </div>
+
+    <!-- Your existing Home Section -->
+   
+  </header>
+
+  
+
+    <!-- HERO SECTION -->
+    <section class="hero section-shell" id="home">
+        
+     <!-- TOP BACKGROUND SLIDESHOW HERO -->
+<section class="top-photo-hero" id="topPhotoHero">
+
+    <div class="top-photo-slide active"
+         style="background-image: url('W1.webp');"></div>
+
+    <div class="top-photo-slide"
+         style="background-image: url('W2.webp');"></div>
+
+    <div class="top-photo-slide"
+         style="background-image: url('W3.webp');"></div>
+
+    <div class="top-photo-slide"
+         style="background-image: url('W4.webp');"></div>
+
+    <div class="top-photo-slide"
+         style="background-image: url('W5.webp');"></div>
+         
+         <div class="top-photo-slide"
+         style="background-image: url('W6.webp');"></div>
+         
+         <div class="top-photo-slide"
+         style="background-image: url('W7.webp');"></div>
+         
+         <div class="top-photo-slide"
+         style="background-image: url('W8.webp');"></div>
+
+    <div class="top-photo-overlay"></div>
+
+    <div class="top-photo-content">
+        <p class="eyebrow">
+        
+       <h6> <p>Technology, creativity, and practical solutions.</p></h6>
+    </div>
+
+    <div class="top-photo-dots" id="topPhotoDots"></div>
+
+</section>
+
+<main>
+        
+      <div class="hero-copy">
+        <p class="eyebrow">
+          <span class="status-dot"></span>
+          SOFTWARE DEVELOPER | SOCIAL MEDIA SPECIALIST | TANZANIA
+        </p>
+        
+        
+        <!-- CREATIVE PORTFOLIO BUTTONS -->
+<div class="creative-buttons">
+
+    <!-- VIEW PHOTOS -->
+    <button
+        type="button"
+        class="creative-btn"
+        onclick="document.getElementById('creativeSlider').scrollIntoView({ behavior: 'smooth', block: 'center' });"
+    >
+        <i class="fa-solid fa-camera" aria-hidden="true"></i>
+        <span>View Photos</span>
+    </button>
+
+    <!-- VIEW VIDEOS -->
+    <a href="videos.html" class="creative-btn">
+        <i class="fa-solid fa-circle-play" aria-hidden="true"></i>
+        <span>View Videos</span>
+    </a>
+
+</div>
+
+        
+
+        <h1>I build digital<br>things that <span class="accent-text">matter</span></h1>
+
+        <p class="hero-description">
+          I'm Shadeus Marwa Matinde — a software developer and social media
+          specialist passionate about building useful digital products,
+          managing social media platforms, and creating engaging digital
+          content that helps organizations strengthen their online presence.
+        </p>
+
+        <div class="hero-actions">
+          <a class="button button-primary" href="#projects">Explore my work <span></span></a>
+          <a class="button button-quiet" href="#contact">Get in touch <span></span></a>
+        </div>
+
+        <div class="hero-meta">
+          <span class="meta-line"></span>
+          <span>Curious by nature. Building with purpose.</span>
+        </div>
+      </div>
+
+      <div class="hero-visual">
+        <div class="image-frame">
+          <div class="frame-top">
+            <span>PROFILE / 001</span>
+            <span class="live-label"><i></i> ONLINE</span>
+          </div>
+
+          <img src="Developer.jpg" alt="Portrait of Shadeus Marwa Matinde" class="profile-image">
+
+          <div class="image-caption">
+            <div>
+              <strong>Shadeus Marwa Matinde</strong>
+              <span>Software Developer &amp; Social Media Specialist</span>
+            </div>
+            <span class="caption-symbol"></span>
+          </div>
+        </div>
+
+        <div class="floating-tag tag-code">
+          <span class="tag-icon">&lt;/&gt;</span>
+          <span>
+            <small>FOCUS</small>
+            <strong>Build · Learn · Improve</strong>
+          </span>
+        </div>
+
+        <div class="floating-tag tag-location">
+          <span class="location-dot"></span>
+          <span>
+            <small>BASED IN</small>
+            <strong>Tanzania, E.A.</strong>
+          </span>
+        </div>
+
+        <div class="orbit orbit-one"></div>
+        <div class="orbit orbit-two"></div>
+      </div>
+
+      <a class="scroll-cue" href="#about">
+        <span class="scroll-mouse"></span>
+        SCROLL TO EXPLORE
+      </a>
+    </section>
+
+    <!-- ABOUT SECTION -->
+    <section class="section-shell section-block" id="about">
+      <div class="section-heading reveal">
+        <p class="eyebrow">01 / ABOUT ME</p>
+        <h2>Thoughtful code.<br><span class="muted-text">Real-world impact.</span></h2>
+      </div>
+
+      <div class="about-layout">
+        <div class="about-copy reveal">
+          <p class="large-copy">
+            Technology is most exciting to me when it solves a problem someone actually has.
+          </p>
+
+          <p>
+            I have hands-on experience in social media account management,
+            digital content creation, platform management, and online brand
+            communication. My work involves managing organizational social
+            media accounts, developing and publishing content, maintaining a
+            consistent digital presence, and communicating information
+            effectively to online audiences.
+          </p>
+
+          <p>
+            Combined with my technical background in software development,
+            IT infrastructure, network troubleshooting, and Management
+            Information Systems (MIS), I can support both an organization's
+            digital operations and its online presence. I approach each task
+            analytically, using technical problem-solving, creative content
+            development, and continuous improvement to deliver effective
+            digital solutions.
+          </p>
+
+          <p>
+            I'm growing my craft through hands-on projects — with a long-term
+            goal of creating useful products for businesses, schools, and
+            communities across East Africa.
+          </p>
+
+          <a class="text-link" href="#contact">
+            Have a problem to solve? <span></span>
+          </a>
+        </div>
+
+        <div class="about-facts reveal">
+          <div class="fact-card">
+            <span class="fact-number">01</span>
+            <div>
+              <h3>Problem-first</h3>
+              <p>I start with the need, not just the technology.</p>
+            </div>
+          </div>
+
+          <div class="fact-card">
+            <span class="fact-number">02</span>
+            <div>
+              <h3>Always learning</h3>
+              <p>Every project is a chance to improve my skills.</p>
+            </div>
+          </div>
+
+          <div class="fact-card">
+            <span class="fact-number">03</span>
+            <div>
+              <h3>Built with purpose</h3>
+              <p>Useful, understandable, maintainable solutions.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TECHNICAL SKILLS SECTION -->
+    <section class="section-shell section-block" id="skills">
+      <div class="section-heading reveal">
+        <p class="eyebrow">02 / TOOLKIT</p>
+        <h2>Tools I work with<span class="accent-text"></span></h2>
+        <p class="section-intro">
+          A growing toolkit for designing, building, and improving web-based systems.
+        </p>
+      </div>
+
+      <div class="skills-grid reveal">
+        <article class="skill-card">
+          <span class="skill-index">01</span>
+          <div class="skill-symbol">&lt;/&gt;</div>
+          <h3>Frontend</h3>
+          <p>Building responsive, accessible interfaces.</p>
+          <div class="skill-tags">
+            <span>HTML</span>
+            <span>CSS</span>
+            <span>JavaScript</span>
+            <span>REACT</span>
+            <span>RESPONSIVE WEB DESIGN</span>
+          </div>
+        </article>
+
+        <article class="skill-card">
+          <span class="skill-index">02</span>
+          <div class="skill-symbol">{ }</div>
+          <h3>Backend &amp; data</h3>
+          <p>Learning how applications process and store information.</p>
+          <div class="skill-tags">
+            <span>Node.js</span>
+            <span>PHP</span>
+            <span>SQL</span>
+            <span>API INTEGRATION</span>
+            <span>SUPABASE</span>
+            <span>EXPRESS.js</span>
+            <span>PYTHON &amp; DJANGO</span>
+          </div>
+        </article>
+
+        <article class="skill-card">
+          <span class="skill-index">03</span>
+          <div class="skill-symbol">⌘</div>
+          <h3>Tools &amp; workflow</h3>
+          <p>Organising code and iterating through real projects.</p>
+          <div class="skill-tags">
+            <span>Git</span>
+            <span>GitHub</span>
+            <span>VS Code</span>
+            <span>DOCKER</span>
+            <span>VPS</span>
+            <span>CURSOR &amp; OPEN AI</span>
+          </div>
+        </article>
+
+        <article class="skill-card">
+          <span class="skill-index">04</span>
+          <div class="skill-symbol"><i class="fa-solid fa-database"></i></div>
+          <h3>Database</h3>
+          <p>
+            Structuring data, writing queries, and managing database operations
+            using SQL and NoSQL technologies.
+          </p>
+          <div class="skill-tags">
+            <span>MONGODB</span>
+            <span>MYSQL</span>
+            <span>POSTGRESQL</span>
+          </div>
+        </article>
+      </div>
+
+      <p class="skills-note reveal">
+        This toolkit reflects my current learning and project experience;
+        I'm continuously expanding it.
+      </p>
+    </section>
+
+    <!-- SOCIAL MEDIA SPECIALIST SECTION -->
+    <section class="section-shell section-block" id="social-media">
+      <div class="section-heading reveal">
+        <p class="eyebrow">03 / SOCIAL MEDIA</p>
+        <h2>Connecting brands<br><span class="muted-text">with their audience.</span></h2>
+        <p class="section-intro">
+          I combine digital communication, content development, and technology
+          to help organizations strengthen their online presence and communicate
+          effectively with their audiences.
+        </p>
+      </div>
+
+      <div class="skills-grid reveal">
+        <article class="skill-card">
+          <span class="skill-index">01</span>
+          <div class="skill-symbol"><i class="fa-solid fa-hashtag"></i></div>
+          <h3>Social Media Management</h3>
+          <p>
+            Managing social media accounts, maintaining an active online presence,
+            and helping organizations communicate effectively with their audiences.
+          </p>
+          <div class="skill-tags">
+            <span>ACCOUNT MANAGEMENT</span>
+            <span>ONLINE PRESENCE</span>
+            <span>DIGITAL COMMUNICATION</span>
+          </div>
+        </article>
+
+        <article class="skill-card">
+          <span class="skill-index">02</span>
+          <div class="skill-symbol"><i class="fa-solid fa-pen-nib"></i></div>
+          <h3>Digital Content Creation</h3>
+          <p>
+            Developing relevant digital content that communicates an organization's
+            message, showcases its activities, and engages its target audience.
+          </p>
+          <div class="skill-tags">
+            <span>CONTENT PLANNING</span>
+            <span>CAPTIONS</span>
+            <span>BRAND COMMUNICATION</span>
+          </div>
+        </article>
+
+        <article class="skill-card">
+          <span class="skill-index">03</span>
+          <div class="skill-symbol"><i class="fa-solid fa-bullhorn"></i></div>
+          <h3>Digital Promotion</h3>
+          <p>
+            Supporting digital promotional activities and helping organizations
+            present their services, activities, and achievements online.
+          </p>
+          <div class="skill-tags">
+            <span>DIGITAL PROMOTION</span>
+            <span>BRAND AWARENESS</span>
+            <span>AUDIENCE ENGAGEMENT</span>
+          </div>
+        </article>
+
+        <article class="skill-card">
+          <span class="skill-index">04</span>
+          <div class="skill-symbol"><i class="fa-solid fa-laptop-code"></i></div>
+          <h3>Technology &amp; Communication</h3>
+          <p>
+            Applying IT knowledge to support online platforms, digital workflows,
+            and an organization's overall digital presence.
+          </p>
+          <div class="skill-tags">
+            <span>IT SKILLS</span>
+            <span>WEB TECHNOLOGIES</span>
+            <span>DIGITAL TOOLS</span>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- CREATIVE WORK: PHOTO & VIDEO SHOWCASE -->
+    <section class="section-shell section-block" id="creative-work">
+      <div class="section-heading reveal">
+        <p class="eyebrow">04 / CREATIVE WORK</p>
+        <h2>Visual stories.<br><span class="muted-text">Creative execution.</span></h2>
+        <p class="section-intro">
+          A showcase of my photo editing, video editing, and digital content
+          work created for communication and social media.
+        </p>
+      </div>
+
+      <div class="creative-showcase reveal">
+        <div class="creative-showcase-heading">
+          <p class="eyebrow">SELECTED VISUALS</p>
+          <h3>Photo &amp; Video Editing</h3>
+          <p>
+            Explore my creative work. Swipe on mobile, use the navigation
+            arrows, or select a dot to move between projects.
+          </p>
+        </div>
+
+        <div
+          class="creative-slider"
+          id="creativeSlider"
+          aria-label="Photo and video editing showcase"
+          aria-roledescription="carousel"
+        >
+          <div class="creative-slides">
+
+            <!-- Replace these sample paths with your actual image filenames. -->
+            <article class="creative-slide is-active" aria-hidden="false">
+              <img
+                src="In1.jpg"
+                alt="Photo editing project 1"
+                loading="lazy"
+                draggable="false"
+              >
+              <div class="creative-slide-caption">
+                <span class="slide-category">01 / PHOTO EDITING</span>
+                <h4>Creative Photo Editing</h4>
+                <p>
+                  
+      
+                </p>
+              </div>
+            </article>
+
+            <article class="creative-slide" aria-hidden="true">
+              <img
+                src="In2.jpg"
+                alt="Digital visual content project 2"
+                loading="lazy"
+                draggable="false"
+              >
+              <div class="creative-slide-caption">
+                <span class="slide-category">02 / DIGITAL CONTENT</span>
+                <h4>Visual Content Creation</h4>
+                <p>
+                  
+                  
+                </p>
+              </div>
+            </article>
+
+            <article class="creative-slide" aria-hidden="true">
+              <img
+                src="In3.jpg"
+                alt="Social media creative project 3"
+                loading="lazy"
+                draggable="false"
+              >
+              <div class="creative-slide-caption">
+                <span class="slide-category">03 / SOCIAL MEDIA</span>
+                <h4>Social Media Creatives</h4>
+                <p>
+                  
+                     
+                </p>
+              </div>
+            </article>
+
+            <article class="creative-slide" aria-hidden="true">
+              <img
+                src="In4.jpg"
+                alt="Video editing project 4"
+                loading="lazy"
+                draggable="false"
+              >
+              <div class="creative-slide-caption">
+                <span class="slide-category">04 / VIDEO EDITING</span>
+                <h4>Photo editing</h4>
+                <p>
+                  
+                </p>
+              </div>
+            </article>
+            
+            <article class="creative-slide" aria-hidden="true">
+              <img
+                src="In5.jpg"
+                alt="Video editing project 4"
+                loading="lazy"
+                draggable="false"
+              >
+              <div class="creative-slide-caption">
+                <span class="slide-category">05 / VIDEO EDITING</span>
+                <h4>Photography</h4>
+                <p>
+                  
+                </p>
+              </div>
+            </article>            
+
+          </div>
+
+          <button
+            type="button"
+            class="creative-arrow creative-arrow-prev"
+            id="creativePrev"
+            aria-label="Previous creative project"
+          >
+            <i class="fa-solid fa-chevron-left" aria-hidden="true"></i>
+          </button>
+
+          <button
+            type="button"
+            class="creative-arrow creative-arrow-next"
+            id="creativeNext"
+            aria-label="Next creative project"
+          >
+            <i class="fa-solid fa-chevron-right" aria-hidden="true"></i>
+          </button>
+
+          <div class="creative-counter" aria-live="polite" aria-atomic="true">
+            <span class="creative-counter-current" id="creativeCurrent">01</span>
+            <span class="creative-counter-divider"></span>
+            <span id="creativeTotal">04</span>
+          </div>
+        </div>
+
+        <div class="creative-dots" id="creativeDots" aria-label="Choose a creative project"></div>
+
+        <p class="creative-showcase-note">
+          Tip: replace the sample image paths with your own images. You can
+          add or remove slides to match the work you want to showcase.
+        </p>
+      </div>
+
+      <div class="about-layout">
+        <div class="about-copy reveal">
+          <p class="eyebrow">CREATIVE PROCESS</p>
+          <h3>Photo &amp; Video Editing</h3>
+          <p>
+            My creative work focuses on enhancing images, editing video
+            footage, arranging visual elements, and preparing engaging
+            content for social media and digital communication. I aim to
+            combine visual creativity with clear messaging to help
+            organizations present their activities, services, and ideas
+            effectively to online audiences.
+          </p>
+          <a class="text-link" href="#contact">
+            Discuss an opportunity <span></span>
+          </a>
+        </div>
+
+        <div class="about-facts reveal">
+          <div class="fact-card">
+            <span class="fact-number">01</span>
+            <div>
+              <h3>Communication</h3>
+              <p>Helping organizations communicate clearly through digital platforms.</p>
+            </div>
+          </div>
+
+          <div class="fact-card">
+            <span class="fact-number">02</span>
+            <div>
+              <h3>Content</h3>
+              <p>Presenting information in ways that are relevant to the intended audience.</p>
+            </div>
+          </div>
+
+          <div class="fact-card">
+            <span class="fact-number">03</span>
+            <div>
+              <h3>Technical Advantage</h3>
+              <p>Bringing software and IT knowledge into digital communication work.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROJECTS SECTION -->
+    <section class="section-shell section-block" id="projects">
+      <div class="section-heading reveal">
+        <p class="eyebrow">05 / SELECTED WORK</p>
+        <h2>Things I'm building<span class="accent-text"></span></h2>
+        <p class="section-intro">
+          A selection of practical product ideas and prototypes. Project details
+          can be updated as each one develops.
+        </p>
+      </div>
+
+      <div class="projects-list">
+
+        <article class="project-card reveal">
+          <div class="project-topline">
+            <span>01 — OPERATIONS SYSTEM</span>
+            <span class="project-status"><i></i> IN DEVELOPMENT</span>
+          </div>
+
+          <div class="project-content">
+            <div>
+              <h3>School Management System</h3>
+              <p>
+                A digital workspace concept for organising student records,
+                admissions, fees, and day-to-day school operations.
+              </p>
+
+              <div class="project-tags">
+                <span>Web app</span>
+                <span>Workflow</span>
+                <span>Data management</span>
+                <span>Demo username: titus<br>Demo password: 0056</span>
+
+                <a href="https://shinyangamodernportal.netlify.app"
+                   target="_blank"
+                   rel="noopener noreferrer"
+                   class="live-button">
+                  <p>Live Project</p>
+                </a>
+              </div>
+            </div>
+            <div class="project-arrow"></div>
+          </div>
+        </article>
+
+        <article class="project-card reveal">
+          <div class="project-topline">
+            <span>02 — SUPERMARKET SERVICE</span>
+            <span class="project-status"><i></i> PROTOTYPE</span>
+          </div>
+
+          <div class="project-content">
+            <div>
+              <h3>Supermarket Management Information System</h3>
+              <p>
+                A management and inventory tracking workflow connecting customers
+                and supermarket staff across purchasing, sales, inventory,
+                reporting, and collection.
+              </p>
+
+              <div class="project-tags">
+                <span>Sales</span>
+                <span>Dashboard</span>
+                <span>Process automation</span>
+                <span>Demo username: REBECA<br>Demo password: 0056</span>
+
+                <a href="https://supermarket-mis.vercel.app/login"
+                   target="_blank"
+                   rel="noopener noreferrer"
+                   class="live-button">
+                  <p>Live Project</p>
+                </a>
+              </div>
+            </div>
+            <div class="project-arrow"></div>
+          </div>
+        </article>
+
+        <article class="project-card reveal">
+          <div class="project-topline">
+            <span>03 — RETAIL TOOLS</span>
+            <span class="project-status"><i></i> PROTOTYPE</span>
+          </div>
+
+          <div class="project-content">
+            <div>
+              <h3>Shop Inventory &amp; POS</h3>
+              <p>
+                A phone-first retail tool concept for tracking products,
+                stock levels, and sales in small shops.
+              </p>
+
+              <div class="project-tags">
+                <span>Inventory</span>
+                <span>POS</span>
+                <span>Retail</span>
+                <span>No login</span>
+
+                <a href="https://matindestore.netlify.app"
+                   target="_blank"
+                   rel="noopener noreferrer"
+                   class="live-button">
+                  <p>Live Project</p>
+                </a>
+              </div>
+            </div>
+            <div class="project-arrow"></div>
+          </div>
+        </article>
+
+        <article class="project-card reveal">
+          <div class="project-topline">
+            <span>04 — WEBSITES</span>
+            <span class="project-status"><i></i> PROTOTYPE</span>
+          </div>
+
+          <div class="project-content">
+            <div>
+              <h3>Shade TECH</h3>
+              <p>
+                ShadeTech is a technology initiative focused on helping businesses
+                and organizations improve their operations through modern websites
+                and customized software systems. It was my first project.
+              </p>
+
+              <div class="project-tags">
+                <span>SECURE SYSTEMS</span>
+                <span>ACCESSIBLE ANYWHERE</span>
+                <span>RESPONSIVE WEB DESIGN</span>
+                <span>No login</span>
+
+                <a href="https://shadetech.netlify.app"
+                   target="_blank"
+                   rel="noopener noreferrer"
+                   class="live-button">
+                  <p>Live Project</p>
+                </a>
+              </div>
+            </div>
+            <div class="project-arrow"></div>
+          </div>
+        </article>
+
+      </div>
+
+      <p class="project-disclaimer reveal">
+        These summaries describe project concepts, prototypes, and projects
+        that are currently in development.
+      </p>
+    </section>
+
+    <!-- CONTACT SECTION -->
+    <section class="contact-section" id="contact">
+      <div class="section-shell contact-inner reveal">
+        <p class="eyebrow">06 / CONTACT</p>
+        <h2>Let's make something<br><span class="accent-text">useful</span></h2>
+
+        <p class="contact-copy">
+          Have an idea, a project, or a real problem that could use a software
+          solution or digital communication support? I'd like to hear about it.
+        </p>
+
+        <a class="button button-primary" href="mailto:shadematinde30@gmail.com">
+          Email me <span></span>
+        </a>
+
+        <p class="contact-note">
+          Need help taking your business digital? From websites and custom
+          software to digital communication, let's find the right solution for you.
+          Contact me
+          <span class="phone-number"><h4>+255 754 402 371</h4></span>
+        </p>
+
+        <!-- CV MANAGEMENT -->
+        <section class="cv-manager" id="cv">
+          <h5></h5>
+          <p></p>
+
+          <!-- Public access: no password required -->
+          <a href="#"
+             id="viewCvBtn"
+             target="_blank"
+             rel="noopener noreferrer"
+             class="cv-btn">
+            <h6>View CV</h6>
+          </a>
+
+          <!-- Password-protected management -->
+          <button type="button" class="cv-btn" id="manageCvBtn">
+            <h6>Upload CV</h6>
+          </button>
+
+          <div id="cvManagerPanel" hidden>
+            <h3>Upload CV</h3>
+
+            <form id="cvPasswordForm">
+              <label for="cvPassword">Enter password to Upload or Contact Shadeus</label>
+              <input
+                type="password"
+                id="cvPassword"
+                placeholder="Enter password"
+                autocomplete="off"
+                required
+              >
+              <button type="submit" class="cv-btn">
+                Verify Password
+              </button>
+            </form>
+
+            <p id="cvMessage" role="status" aria-live="polite"></p>
+
+            <div id="cvActions" hidden>
+              <form id="uploadCvForm">
+                <label for="cvFile">Select your CV (PDF)</label>
+                <input
+                  type="file"
+                  id="cvFile"
+                  accept=".pdf,application/pdf"
+                  required
+                >
+                <button type="submit" class="cv-btn">
+                  Upload / Replace CV
+                </button>
+              </form>
+
+              <button type="button" class="cv-btn cv-delete" id="deleteCvBtn">
+                Delete Current CV
+              </button>
+            </div>
+          </div>
+
+          <p id="supabaseStatus">Checking Supabase connection...</p>
+        </section>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="site-footer section-shell">
+    <a class="brand" href="#home">
+      <span class="brand-mark">S<span>.</span></span>
+      <span class="brand-name">SHADEUS MATINDE</span>
+    </a>
+
+    <p>Designed and built with intention.</p>
+
+    <a href="#home" class="back-top">BACK TO TOP</a>
+
+    <span class="copyright">
+      © <span id="year"></span> Shadeus Marwa Matinde
+    </span>
+  </footer>
+
+  <!-- CREATIVE SHOWCASE SCRIPT -->
+  <script>
+    (() => {
+      const slider = document.getElementById("creativeSlider");
+
+      if (!slider) return;
+
+      const slides = Array.from(
+        slider.querySelectorAll(".creative-slide")
+      );
+
+      const previousButton = document.getElementById("creativePrev");
+      const nextButton = document.getElementById("creativeNext");
+      const dotsContainer = document.getElementById("creativeDots");
+      const currentCounter = document.getElementById("creativeCurrent");
+      const totalCounter = document.getElementById("creativeTotal");
+
+      if (!slides.length) return;
+
+      let currentIndex = 0;
+      let touchStartX = 0;
+      let touchStartY = 0;
+      let touchEndX = 0;
+      let touchEndY = 0;
+
+      totalCounter.textContent = String(slides.length).padStart(2, "0");
+
+      // Build the navigation dots automatically.
+      const dots = slides.map((slide, index) => {
+        const dot = document.createElement("button");
+
+        dot.type = "button";
+        dot.className = "creative-dot";
+        dot.setAttribute("aria-label", `Show creative project ${index + 1}`);
+
+        dot.addEventListener("click", () => showSlide(index));
+
+        dotsContainer.appendChild(dot);
+
+        return dot;
+      });
+
+      function showSlide(index) {
+        currentIndex = (index + slides.length) % slides.length;
+
+        slides.forEach((slide, slideIndex) => {
+          const isActive = slideIndex === currentIndex;
+
+          slide.classList.toggle("is-active", isActive);
+          slide.setAttribute("aria-hidden", String(!isActive));
+        });
+
+        dots.forEach((dot, dotIndex) => {
+          const isActive = dotIndex === currentIndex;
+
+          dot.classList.toggle("is-active", isActive);
+
+          if (isActive) {
+            dot.setAttribute("aria-current", "true");
+          } else {
+            dot.removeAttribute("aria-current");
+          }
+        });
+
+        currentCounter.textContent =
+          String(currentIndex + 1).padStart(2, "0");
+      }
+
+      previousButton.addEventListener("click", () => {
+        showSlide(currentIndex - 1);
+      });
+
+      nextButton.addEventListener("click", () => {
+        showSlide(currentIndex + 1);
+      });
+
+      // Swipe left or right on touchscreens.
+      slider.addEventListener("touchstart", (event) => {
+        const touch = event.changedTouches[0];
+
+        touchStartX = touch.screenX;
+        touchStartY = touch.screenY;
+      }, { passive: true });
+
+      slider.addEventListener("touchend", (event) => {
+        const touch = event.changedTouches[0];
+
+        touchEndX = touch.screenX;
+        touchEndY = touch.screenY;
+
+        const differenceX = touchEndX - touchStartX;
+        const differenceY = touchEndY - touchStartY;
+
+        // Avoid interpreting vertical scrolling as a swipe.
+        if (
+          Math.abs(differenceX) > 45 &&
+          Math.abs(differenceX) > Math.abs(differenceY)
+        ) {
+          if (differenceX < 0) {
+            showSlide(currentIndex + 1);
+          } else {
+            showSlide(currentIndex - 1);
+          }
+        }
+      }, { passive: true });
+
+      // Allow keyboard navigation while the slider has focus.
+      slider.tabIndex = 0;
+
+      slider.addEventListener("keydown", (event) => {
+        if (event.key === "ArrowRight") {
+          event.preventDefault();
+          showSlide(currentIndex + 1);
+        }
+
+        if (event.key === "ArrowLeft") {
+          event.preventDefault();
+          showSlide(currentIndex - 1);
+        }
+      });
+
+      showSlide(0);
+     
+    })();
+    
+    
+
+(() => {
+  const hero = document.getElementById("topPhotoHero");
+  if (!hero) return;
+
+  const slides = Array.from(
+    hero.querySelectorAll(".top-photo-slide")
+  );
+
+  const dotsContainer = document.getElementById("topPhotoDots");
+
+  if (slides.length < 2) return;
+
+  let current = 0;
+  let timer;
+
+  // Create slideshow dots once
+  dotsContainer.innerHTML = "";
+
+  const dots = slides.map((slide, index) => {
+    const dot = document.createElement("button");
+
+    dot.type = "button";
+    dot.className = "top-photo-dot";
+    dot.setAttribute("aria-label", `Show photo ${index + 1}`);
+
+    dot.addEventListener("click", () => {
+      showSlide(index);
+      startTimer();
+    });
+
+    dotsContainer.appendChild(dot);
+    return dot;
+  });
+
+  // Display a slide
+  function showSlide(index) {
+    current = (index + slides.length) % slides.length;
+
+    slides.forEach((slide, i) => {
+      slide.classList.toggle("active", i === current);
+    });
+
+    dots.forEach((dot, i) => {
+      dot.classList.toggle("active", i === current);
+    });
+  }
+
+  // Automatically change image every 5 seconds
+  function startTimer() {
+    clearInterval(timer);
+
+    timer = setInterval(() => {
+      showSlide(current + 1);
+    }, 5000);
+  }
+
+  // Swipe support for mobile
+  let touchStartX = 0;
+
+  hero.addEventListener("touchstart", event => {
+    touchStartX = event.changedTouches[0].screenX;
+  }, { passive: true });
+
+  hero.addEventListener("touchend", event => {
+    const difference =
+      event.changedTouches[0].screenX - touchStartX;
+
+    if (Math.abs(difference) > 50) {
+      showSlide(current + (difference < 0 ? 1 : -1));
+      startTimer();
+    }
+  }, { passive: true });
+
+  // Start slideshow
+  showSlide(0);
+  startTimer();
+})();
+
+  </script>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="script.js" defer></script>
+</body>
+</html>
